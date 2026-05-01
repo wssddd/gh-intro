@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gh-intro — GitHub Introduction Project</title>
+  <meta name="description" content="A minimal, Claude.ai-inspired GitHub introduction landing page. Showcase your profile, projects, and guide visitors through your work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+        <span>gh-intro</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#usage">Usage</a>
+        <a href="https://github.com/yourusername/gh-intro" target="_blank" rel="noopener" class="nav-github-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content fade-in">
+      <div class="hero-profile">
+        <div class="hero-avatar">
+          <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="Profile" class="avatar-img" id="avatarImg">
+          <div class="avatar-ring"></div>
+        </div>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Open to collaborate
+        </div>
+      </div>
+      <h1 class="hero-title">Hello, I'm <span class="text-accent">Your Name</span></h1>
+      <p class="hero-subtitle">Full-Stack Developer & Open Source Enthusiast</p>
+      <p class="hero-description">
+        I build thoughtful, well-crafted software that solves real problems.
+        This is my GitHub introduction — a place to explore my work, philosophy, and how to collaborate.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-count="42">0</span>
+          <span class="stat-label">Repositories</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="128">0</span>
+          <span class="stat-label">Stars Earned</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="1200">0</span>
+          <span class="stat-label">Contributions</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub Profile
+        </a>
+      </div>
+    </div>
+    <div class="hero-glow"></div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">About</span>
+        <h2 class="section-title">About This Project</h2>
+      </div>
+      <div class="about-grid fade-in">
+        <div class="about-card">
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4"/><path d="M12 8h.01"/>
+            </svg>
+          </div>
+          <h3>What is gh-intro?</h3>
+          <p>A minimal, elegant GitHub introduction page inspired by Claude.ai's design language. It serves as your digital front door — a warm, approachable way to introduce yourself and your work to the developer community.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3>Tech Stack</h3>
+          <p>Built with zero dependencies — pure HTML, CSS, and JavaScript. No build tools, no frameworks, no complexity. Just clean, semantic markup with Claude.ai-inspired warmth and scroll-driven animations.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Features</h3>
+          <p>Responsive design, smooth scroll animations, animated counters, hover micro-interactions, dark/light aware, and GitHub Pages ready. Everything you need to make a great first impression.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Work</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-desc">A selection of repositories that represent my approach to software engineering.</p>
+      </div>
+      <div class="projects-grid fade-in">
+        <a href="#" class="project-card" target="_blank" rel="noopener">
+          <div class="project-card-header">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/>
+            </svg>
+            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
+          <h3 class="project-title">project-alpha</h3>
+          <p class="project-desc">A lightweight CLI tool for automating development workflows. Built with Node.js and designed for speed.</p>
+          <div class="project-meta">
+            <span class="project-lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+            <span class="project-stars">&#9734; 24</span>
+          </div>
+        </a>
+        <a href="#" class="project-card" target="_blank" rel="noopener">
+          <div class="project-card-header">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
+          <h3 class="project-title">project-beta</h3>
+          <p class="project-desc">Full-stack web application with real-time collaboration features. React frontend with Python backend.</p>
+          <div class="project-meta">
+            <span class="project-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+            <span class="project-stars">&#9734; 56</span>
+          </div>
+        </a>
+        <a href="#" class="project-card" target="_blank" rel="noopener">
+          <div class="project-card-header">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
+          <h3 class="project-title">project-gamma</h3>
+          <p class="project-desc">Open-source design system with accessible components. Built for teams who care about craft.</p>
+          <div class="project-meta">
+            <span class="project-lang"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+            <span class="project-stars">&#9734; 89</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Use Section -->
+  <section class="section" id="usage">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Guide</span>
+        <h2 class="section-title">How to Use This Repo</h2>
+        <p class="section-desc">Get your own GitHub introduction page up and running in under 5 minutes.</p>
+      </div>
+      <div class="steps fade-in">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Clone the repository</h3>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <pre><code>git clone https://github.com/yourusername/gh-intro.git
+cd gh-intro</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Customize your content</h3>
+            <p>Edit <code>index.html</code> to update your name, bio, projects, and links. Replace the avatar URL with your own GitHub avatar.</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">url</span>
+              </div>
+              <pre><code>https://avatars.githubusercontent.com/u/YOUR_ID?v=4</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Preview locally</h3>
+            <p>Open <code>index.html</code> directly in your browser, or use a simple local server:</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <pre><code>python3 -m http.server 8000</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Deploy to GitHub Pages</h3>
+            <p>Push to your GitHub repository, then go to <strong>Settings &rarr; Pages</strong> and select the <code>main</code> branch as source. Your site will be live at:</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">url</span>
+              </div>
+              <pre><code>https://yourusername.github.io/gh-intro/</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot / Preview Section -->
+  <section class="section section-alt" id="preview">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Preview</span>
+        <h2 class="section-title">Project Screenshot</h2>
+        <p class="section-desc">A glimpse of what your GitHub introduction page looks like.</p>
+      </div>
+      <div class="screenshot-wrapper fade-in">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="browser-url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              yourusername.github.io/gh-intro
+            </div>
+          </div>
+          <div class="browser-content">
+            <div class="preview-placeholder">
+              <div class="preview-hero-mock">
+                <div class="mock-avatar"></div>
+                <div class="mock-lines">
+                  <div class="mock-line mock-line-lg"></div>
+                  <div class="mock-line mock-line-md"></div>
+                  <div class="mock-line mock-line-sm"></div>
+                </div>
+                <div class="mock-stats">
+                  <div class="mock-stat"></div>
+                  <div class="mock-stat"></div>
+                  <div class="mock-stat"></div>
+                </div>
+                <div class="mock-buttons">
+                  <div class="mock-btn mock-btn-primary"></div>
+                  <div class="mock-btn mock-btn-secondary"></div>
+                </div>
+              </div>
+              <div class="preview-cards-mock">
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Link Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content fade-in">
+        <h2>Ready to create yours?</h2>
+        <p>Fork this repository and make it your own. It takes less than 5 minutes.</p>
+        <a href="https://github.com/yourusername/gh-intro" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-text">
+          Built with care, inspired by <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>'s design.
+          Zero dependencies. Open source.
+        </p>
+        <p class="footer-copy">&copy; 2025 gh-intro. MIT License.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
