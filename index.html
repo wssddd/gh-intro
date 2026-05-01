@@ -3,34 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>gh-intro — GitHub Introduction Project</title>
-  <meta name="description" content="A minimal, Claude.ai-inspired GitHub introduction landing page. Showcase your profile, projects, and guide visitors through your work.">
+  <title>Open Design — Local-first, Open-Source Alternative to Claude Design</title>
+  <meta name="description" content="Open Design: 31 Skills, 72 brand-grade Design Systems, sandboxed preview, HTML/PDF/PPTX export. Runs on 10+ coding-agent CLIs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
+
+  <!-- Print Cover Page -->
+  <div class="print-cover">
+    <div class="print-cover-inner">
+      <div class="print-cover-badge">OPEN SOURCE PROJECT</div>
+      <h1 class="print-cover-title">Open Design</h1>
+      <p class="print-cover-subtitle">Local-first, open-source alternative to Anthropic's Claude Design</p>
+      <div class="print-cover-meta">
+        <span>github.com/nexu-io/open-design</span>
+        <span>Apache-2.0 License</span>
+        <span>7.8k Stars</span>
+      </div>
+      <div class="print-cover-stats">
+        <div class="print-stat"><strong>31</strong><br>Skills</div>
+        <div class="print-stat"><strong>72</strong><br>Design Systems</div>
+        <div class="print-stat"><strong>10+</strong><br>Agent CLIs</div>
+        <div class="print-stat"><strong>35</strong><br>Contributors</div>
+      </div>
+      <img src="assets/banner.png" alt="Open Design banner" class="print-cover-banner">
+    </div>
+  </div>
+
+  <!-- Navigation (screen only) -->
+  <nav class="nav no-print">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
+      <a href="https://github.com/nexu-io/open-design" class="nav-logo" target="_blank" rel="noopener">
         <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/>
-          <path d="M9 18c-4.51 2-5-2-7-2"/>
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <span>gh-intro</span>
+        <span>Open Design</span>
       </a>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#architecture">Architecture</a>
         <a href="#usage">Usage</a>
-        <a href="https://github.com/yourusername/gh-intro" target="_blank" rel="noopener" class="nav-github-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          GitHub
+        <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="nav-github-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Star 7.8k
         </a>
       </div>
     </div>
@@ -39,287 +59,410 @@
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-content fade-in">
-      <div class="hero-profile">
-        <div class="hero-avatar">
-          <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="Profile" class="avatar-img" id="avatarImg">
-          <div class="avatar-ring"></div>
-        </div>
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Open to collaborate
-        </div>
+      <img src="assets/banner.png" alt="Open Design — design with the agent on your laptop" class="hero-banner">
+      <div class="hero-badges">
+        <span class="badge badge-accent">Local-first</span>
+        <span class="badge badge-outline">Open Source</span>
+        <span class="badge badge-outline">Apache-2.0</span>
       </div>
-      <h1 class="hero-title">Hello, I'm <span class="text-accent">Your Name</span></h1>
-      <p class="hero-subtitle">Full-Stack Developer & Open Source Enthusiast</p>
+      <h1 class="hero-title">Open Design</h1>
+      <p class="hero-subtitle">Local-first, open-source alternative to Anthropic's Claude Design</p>
       <p class="hero-description">
-        I build thoughtful, well-crafted software that solves real problems.
-        This is my GitHub introduction — a place to explore my work, philosophy, and how to collaborate.
+        31 Skills. 72 brand-grade Design Systems. Sandboxed preview. HTML/PDF/PPTX export.
+        Runs on Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Qwen, Copilot, Hermes, Kimi CLI, and any OpenAI-compatible provider.
       </p>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-number" data-count="42">0</span>
-          <span class="stat-label">Repositories</span>
+          <span class="stat-number" data-count="7800">0</span>
+          <span class="stat-label">Stars</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-number" data-count="128">0</span>
-          <span class="stat-label">Stars Earned</span>
+          <span class="stat-number" data-count="873">0</span>
+          <span class="stat-label">Forks</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-number" data-count="1200">0</span>
-          <span class="stat-label">Contributions</span>
+          <span class="stat-number" data-count="35">0</span>
+          <span class="stat-label">Contributors</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="66">0</span>
+          <span class="stat-label">Commits</span>
         </div>
       </div>
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="btn btn-secondary">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          GitHub Profile
+        <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
         </a>
+        <a href="#usage" class="btn btn-secondary">Quick Start</a>
+        <button onclick="window.print()" class="btn btn-secondary no-print">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print (US Letter)
+        </button>
       </div>
     </div>
     <div class="hero-glow"></div>
   </section>
 
   <!-- About Section -->
-  <section class="section" id="about">
+  <section class="section page-break-before" id="about">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-tag">About</span>
-        <h2 class="section-title">About This Project</h2>
+        <h2 class="section-title">What is Open Design?</h2>
+        <p class="section-desc">A complete design platform that runs locally alongside your coding agent.</p>
       </div>
       <div class="about-grid fade-in">
         <div class="about-card">
           <div class="about-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 16v-4"/><path d="M12 8h.01"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <h3>What is gh-intro?</h3>
-          <p>A minimal, elegant GitHub introduction page inspired by Claude.ai's design language. It serves as your digital front door — a warm, approachable way to introduce yourself and your work to the developer community.</p>
+          <h3>31 Skills, 72 Design Systems</h3>
+          <p>Ship with a rich skill library covering prototypes, decks, mobile apps, dashboards, email marketing, social carousels, and more. Each backed by one of 72 curated brand-grade design systems.</p>
         </div>
         <div class="about-card">
           <div class="about-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <h3>Tech Stack</h3>
-          <p>Built with zero dependencies — pure HTML, CSS, and JavaScript. No build tools, no frameworks, no complexity. Just clean, semantic markup with Claude.ai-inspired warmth and scroll-driven animations.</p>
+          <h3>Sandboxed Preview + Export</h3>
+          <p>Every artifact renders in a clean srcdoc iframe. Editable in place via the file workspace; downloadable as HTML, PDF, PPTX, ZIP, or Markdown. No external services needed.</p>
         </div>
         <div class="about-card">
           <div class="about-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
           </div>
-          <h3>Features</h3>
-          <p>Responsive design, smooth scroll animations, animated counters, hover micro-interactions, dark/light aware, and GitHub Pages ready. Everything you need to make a great first impression.</p>
+          <h3>10+ Coding Agent CLIs</h3>
+          <p>Plug into Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Qwen, Copilot, Hermes, Kimi CLI, Pi, or any OpenAI-compatible BYOK provider.</p>
+        </div>
+      </div>
+
+      <div class="github-info fade-in">
+        <h3>Project Details</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Repository</span>
+            <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="info-value info-link">github.com/nexu-io/open-design</a>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Organization</span>
+            <span class="info-value">nexu-io</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">License</span>
+            <span class="info-value">Apache-2.0</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Primary Language</span>
+            <span class="info-value">TypeScript (67.2%)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Architecture</span>
+            <span class="info-value">Next.js Web + Daemon + Sidecar IPC</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Status</span>
+            <span class="info-value">Active development (daily commits)</span>
+          </div>
+        </div>
+        <div class="lang-bar">
+          <div class="lang-segment" style="width:67.2%;background:#3178c6" title="TypeScript 67.2%"></div>
+          <div class="lang-segment" style="width:23.7%;background:#e34c26" title="HTML 23.7%"></div>
+          <div class="lang-segment" style="width:5.6%;background:#563d7c" title="CSS 5.6%"></div>
+          <div class="lang-segment" style="width:3.5%;background:#f1e05a" title="JavaScript 3.5%"></div>
+        </div>
+        <div class="lang-labels">
+          <span><span class="lang-dot" style="background:#3178c6"></span>TypeScript 67.2%</span>
+          <span><span class="lang-dot" style="background:#e34c26"></span>HTML 23.7%</span>
+          <span><span class="lang-dot" style="background:#563d7c"></span>CSS 5.6%</span>
+          <span><span class="lang-dot" style="background:#f1e05a"></span>JavaScript 3.5%</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section class="section section-alt" id="projects">
+  <!-- Screenshots Section -->
+  <section class="section section-alt page-break-before" id="screenshots">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-tag">Work</span>
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-desc">A selection of repositories that represent my approach to software engineering.</p>
+        <span class="section-tag">Screenshots</span>
+        <h2 class="section-title">See It in Action</h2>
+        <p class="section-desc">The complete design workflow, from brief to pixel-perfect output.</p>
       </div>
-      <div class="projects-grid fade-in">
-        <a href="#" class="project-card" target="_blank" rel="noopener">
-          <div class="project-card-header">
-            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/>
-            </svg>
-            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-            </svg>
+
+      <div class="screenshot-grid fade-in">
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="assets/01-entry-view.png" alt="Entry view" loading="lazy">
           </div>
-          <h3 class="project-title">project-alpha</h3>
-          <p class="project-desc">A lightweight CLI tool for automating development workflows. Built with Node.js and designed for speed.</p>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-            <span class="project-stars">&#9734; 24</span>
+          <div class="screenshot-info">
+            <h4>Entry View</h4>
+            <p>Pick a skill, pick a design system, type the brief. The same surface for prototypes, decks, mobile apps, dashboards, and editorial pages.</p>
           </div>
-        </a>
-        <a href="#" class="project-card" target="_blank" rel="noopener">
-          <div class="project-card-header">
-            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
-            </svg>
-            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-            </svg>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="assets/02-question-form.png" alt="Turn-1 discovery form" loading="lazy">
           </div>
-          <h3 class="project-title">project-beta</h3>
-          <p class="project-desc">Full-stack web application with real-time collaboration features. React frontend with Python backend.</p>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-            <span class="project-stars">&#9734; 56</span>
+          <div class="screenshot-info">
+            <h4>Turn-1 Discovery Form</h4>
+            <p>Before the model writes a pixel, OD locks the brief: surface, audience, tone, brand context, scale. 30 seconds of radios beats 30 minutes of redirects.</p>
           </div>
-        </a>
-        <a href="#" class="project-card" target="_blank" rel="noopener">
-          <div class="project-card-header">
-            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-            </svg>
+        </div>
+        <div class="screenshot-card page-break-before">
+          <div class="screenshot-frame">
+            <img src="assets/03-direction-picker.png" alt="Direction picker" loading="lazy">
           </div>
-          <h3 class="project-title">project-gamma</h3>
-          <p class="project-desc">Open-source design system with accessible components. Built for teams who care about craft.</p>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-            <span class="project-stars">&#9734; 89</span>
+          <div class="screenshot-info">
+            <h4>Direction Picker</h4>
+            <p>When the user has no brand, the agent emits 5 curated directions (Monocle / Modern Minimal / Tech Utility / Brutalist / Soft Warm). One click = a deterministic palette + font stack.</p>
           </div>
-        </a>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="assets/05-preview-iframe.png" alt="Sandboxed preview" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>Sandboxed Preview</h4>
+            <p>Every artifact renders in a clean srcdoc iframe. Editable in place via the file workspace; downloadable as HTML, PDF, ZIP.</p>
+          </div>
+        </div>
+        <div class="screenshot-card page-break-before">
+          <div class="screenshot-frame">
+            <img src="assets/06-design-systems-library.png" alt="72-system library" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>72-System Library</h4>
+            <p>Every product system shows its 4-color signature. Click for the full DESIGN.md, swatch grid, and live showcase.</p>
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="assets/07-magazine-deck.png" alt="Magazine deck" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>Deck Mode (guizang-ppt)</h4>
+            <p>Magazine layouts, WebGL hero backgrounds, single-file HTML output, PDF export. The bundled guizang-ppt-skill drops in unchanged.</p>
+          </div>
+        </div>
+        <div class="screenshot-card page-break-before">
+          <div class="screenshot-frame">
+            <img src="assets/08-mobile-app.png" alt="Mobile prototype" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>Mobile Prototype</h4>
+            <p>Pixel-accurate iPhone 15 Pro chrome (Dynamic Island, status bar SVGs, home indicator). Multi-screen prototypes use shared /frames/ assets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section class="section page-break-before" id="architecture">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Architecture</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">Three-tier local architecture: Web UI + Daemon + Coding Agent CLI.</p>
+      </div>
+      <div class="arch-diagram fade-in">
+        <pre class="arch-ascii">
++------------------------------------------------------------------+
+|                         Browser (Next.js)                        |
+|  chat . file workspace . iframe preview . settings . imports     |
++-------------------+----------------------------------------------+
+                    | http://localhost:3000
++-------------------v----------------------------------------------+
+|                     Daemon (Node.js)                             |
+|  /api/chat/stream  /api/projects  /api/skills  /api/templates    |
+|  /api/export       /api/design-systems  /api/proxy/stream        |
+|  /api/artifacts/lint  /api/import/claude-design                  |
++-------------------+----------------------------------------------+
+                    | spawn + stdio / OpenAI-compat SSE
++-------------------v----------------------------------------------+
+|              Coding-Agent CLI  (user's choice)                   |
+|  Claude Code | Codex | Gemini | OpenCode | Cursor | Qwen | ...  |
++------------------------------------------------------------------+
+        </pre>
+      </div>
+      <div class="arch-layers fade-in">
+        <div class="arch-layer">
+          <div class="arch-layer-tag">Web</div>
+          <div class="arch-layer-content">
+            <h4>Next.js App Router</h4>
+            <p>Chat, composer with skill/design-system picker, question forms, direction picker, sandboxed iframe preview, file workspace, settings, Claude Design ZIP import.</p>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-tag">Daemon</div>
+          <div class="arch-layer-content">
+            <h4>Node.js Background Process</h4>
+            <p>Prompt-stack assembly (system + skill + design-system + user turns), agent lifecycle, project persistence, multi-format export (HTML/PDF/PPTX/ZIP/MD), BYOK proxy with SSRF blocklist.</p>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-tag">Agent</div>
+          <div class="arch-layer-content">
+            <h4>Your Existing CLI</h4>
+            <p>The daemon spawns whichever coding-agent CLI you have installed and bridges stdio or OpenAI-compatible SSE. No vendor lock-in.</p>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-tag">Desktop</div>
+          <div class="arch-layer-content">
+            <h4>Optional Electron Shell</h4>
+            <p>Sidecar IPC protocol (STATUS / EVAL / SCREENSHOT / CONSOLE / CLICK / SHUTDOWN) for headless E2E testing against a real Electron window.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="agents-table fade-in">
+        <h3>Supported Coding Agents</h3>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent CLI</th>
+                <th>Stream Format</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Claude Code</td><td>stdio (native)</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Codex</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Gemini CLI</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>OpenCode</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Cursor Agent</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Qwen</td><td>OpenAI SSE</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Copilot</td><td>OpenAI SSE</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Hermes</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Kimi CLI</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>Pi</td><td>stdio</td><td class="status-shipped">Shipped</td></tr>
+              <tr><td>BYOK (any provider)</td><td>OpenAI-compat SSE</td><td class="status-shipped">Shipped</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- How to Use Section -->
-  <section class="section" id="usage">
+  <section class="section section-alt page-break-before" id="usage">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-tag">Guide</span>
-        <h2 class="section-title">How to Use This Repo</h2>
-        <p class="section-desc">Get your own GitHub introduction page up and running in under 5 minutes.</p>
+        <h2 class="section-title">Quick Start</h2>
+        <p class="section-desc">Get Open Design running locally in under 2 minutes.</p>
       </div>
       <div class="steps fade-in">
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h3>Clone the repository</h3>
+            <h3>Clone and install</h3>
             <div class="code-block">
               <div class="code-header">
                 <span class="code-lang">bash</span>
-                <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+                <button class="code-copy no-print" onclick="copyCode(this)" aria-label="Copy code">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
-              <pre><code>git clone https://github.com/yourusername/gh-intro.git
-cd gh-intro</code></pre>
+              <pre><code>git clone https://github.com/nexu-io/open-design.git
+cd open-design
+npm install</code></pre>
             </div>
           </div>
         </div>
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h3>Customize your content</h3>
-            <p>Edit <code>index.html</code> to update your name, bio, projects, and links. Replace the avatar URL with your own GitHub avatar.</p>
+            <h3>Start the daemon + web app</h3>
             <div class="code-block">
               <div class="code-header">
-                <span class="code-lang">url</span>
+                <span class="code-lang">bash</span>
+                <button class="code-copy no-print" onclick="copyCode(this)" aria-label="Copy code">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
               </div>
-              <pre><code>https://avatars.githubusercontent.com/u/YOUR_ID?v=4</code></pre>
+              <pre><code>npm run dev</code></pre>
             </div>
+            <p>Opens <code>http://localhost:3000</code>. The daemon auto-starts in the background.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h3>Preview locally</h3>
-            <p>Open <code>index.html</code> directly in your browser, or use a simple local server:</p>
-            <div class="code-block">
-              <div class="code-header">
-                <span class="code-lang">bash</span>
-                <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                </button>
-              </div>
-              <pre><code>python3 -m http.server 8000</code></pre>
-            </div>
+            <h3>Pick a skill + design system</h3>
+            <p>The entry view lets you select from 31 skills and 72 design systems. Type your brief and hit send — the agent handles the rest.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3>Deploy to GitHub Pages</h3>
-            <p>Push to your GitHub repository, then go to <strong>Settings &rarr; Pages</strong> and select the <code>main</code> branch as source. Your site will be live at:</p>
-            <div class="code-block">
-              <div class="code-header">
-                <span class="code-lang">url</span>
-              </div>
-              <pre><code>https://yourusername.github.io/gh-intro/</code></pre>
-            </div>
+            <h3>Preview, edit, export</h3>
+            <p>Artifacts render in the sandboxed preview. Edit inline, then export as HTML, PDF, PPTX, ZIP, or Markdown.</p>
           </div>
         </div>
+      </div>
+
+      <div class="contribute-box fade-in">
+        <h3>Contributing</h3>
+        <p>Issues, PRs, new skills, and new design systems are all welcome. The highest-leverage contributions:</p>
+        <ul>
+          <li><strong>Add a skill</strong> — drop a folder into <code>skills/</code> following the SKILL.md convention</li>
+          <li><strong>Add a design system</strong> — drop a DESIGN.md into <code>design-systems/&lt;brand&gt;/</code> using the 9-section schema</li>
+          <li><strong>Wire up a new agent CLI</strong> — one entry in <code>apps/daemon/src/agents.ts</code></li>
+        </ul>
+        <p>Full walkthrough: <a href="https://github.com/nexu-io/open-design/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a></p>
       </div>
     </div>
   </section>
 
-  <!-- Screenshot / Preview Section -->
-  <section class="section section-alt" id="preview">
+  <!-- Project Structure Section -->
+  <section class="section page-break-before" id="structure">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-tag">Preview</span>
-        <h2 class="section-title">Project Screenshot</h2>
-        <p class="section-desc">A glimpse of what your GitHub introduction page looks like.</p>
+        <span class="section-tag">Structure</span>
+        <h2 class="section-title">Repository Layout</h2>
       </div>
-      <div class="screenshot-wrapper fade-in">
-        <div class="browser-frame">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-url">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              yourusername.github.io/gh-intro
-            </div>
-          </div>
-          <div class="browser-content">
-            <div class="preview-placeholder">
-              <div class="preview-hero-mock">
-                <div class="mock-avatar"></div>
-                <div class="mock-lines">
-                  <div class="mock-line mock-line-lg"></div>
-                  <div class="mock-line mock-line-md"></div>
-                  <div class="mock-line mock-line-sm"></div>
-                </div>
-                <div class="mock-stats">
-                  <div class="mock-stat"></div>
-                  <div class="mock-stat"></div>
-                  <div class="mock-stat"></div>
-                </div>
-                <div class="mock-buttons">
-                  <div class="mock-btn mock-btn-primary"></div>
-                  <div class="mock-btn mock-btn-secondary"></div>
-                </div>
-              </div>
-              <div class="preview-cards-mock">
-                <div class="mock-card"></div>
-                <div class="mock-card"></div>
-                <div class="mock-card"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="tree-block fade-in">
+        <pre><code>open-design/
+├── apps/
+│   ├── web/                 ← Next.js frontend (chat, preview, settings)
+│   ├── daemon/              ← Node.js background service (API + agent bridge)
+│   ├── desktop/             ← Optional Electron shell + sidecar IPC
+│   └── packaged/            ← Electron build (pending)
+├── design-systems/          ← 72 brand-grade DESIGN.md specs
+├── skills/                  ← 31 skills (prototype, deck, mobile, email...)
+├── prompt-templates/        ← System/skill/design-system prompt assembly
+├── packages/
+│   ├── sidecar-proto/       ← Typed sidecar IPC definitions
+│   └── contracts/           ← Open Design-specific contracts
+├── scripts/                 ← Build + dev utilities
+├── e2e/                     ← Playwright E2E tests
+├── specs/                   ← Technical specifications
+├── docs/                    ← Assets, screenshots, roadmap
+├── templates/               ← Starter templates
+└── story/                   ← Project narrative docs</code></pre>
       </div>
     </div>
   </section>
 
-  <!-- GitHub Link Section -->
-  <section class="section cta-section">
+  <!-- CTA Section -->
+  <section class="section cta-section no-print">
     <div class="container">
       <div class="cta-content fade-in">
-        <h2>Ready to create yours?</h2>
-        <p>Fork this repository and make it your own. It takes less than 5 minutes.</p>
-        <a href="https://github.com/yourusername/gh-intro" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          View on GitHub
-        </a>
+        <h2>Start designing with your agent</h2>
+        <p>Clone the repo, run <code>npm run dev</code>, and start creating. It takes 2 minutes.</p>
+        <div class="cta-buttons">
+          <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+          <a href="https://github.com/nexu-io/open-design/fork" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">Fork This Repo</a>
+        </div>
       </div>
     </div>
   </section>
@@ -329,10 +472,10 @@ cd gh-intro</code></pre>
     <div class="container">
       <div class="footer-inner">
         <p class="footer-text">
-          Built with care, inspired by <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>'s design.
-          Zero dependencies. Open source.
+          <strong>Open Design</strong> by <a href="https://github.com/nexu-io" target="_blank" rel="noopener">nexu-io</a> &mdash;
+          inspired by <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>'s design language.
         </p>
-        <p class="footer-copy">&copy; 2025 gh-intro. MIT License.</p>
+        <p class="footer-copy">&copy; 2026 Open Design. Apache-2.0 License. <span class="print-only"> &mdash; github.com/nexu-io/open-design</span></p>
       </div>
     </div>
   </footer>
