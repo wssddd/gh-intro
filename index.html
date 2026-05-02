@@ -34,23 +34,50 @@
     </div>
   </div>
 
+  <!-- Generator Panel (screen only) -->
+  <div class="gen-overlay no-print" id="genOverlay" onclick="closeGenerator()"></div>
+  <div class="gen-panel no-print" id="genPanel">
+    <div class="gen-panel-header">
+      <h3>Generate Introduction Page</h3>
+      <button class="gen-close" onclick="closeGenerator()" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="gen-panel-body">
+      <label class="gen-label" for="genInput">GitHub Repository URL</label>
+      <div class="gen-input-row">
+        <input type="text" id="genInput" class="gen-input" placeholder="https://github.com/owner/repo" spellcheck="false" autocomplete="off">
+        <button class="btn btn-primary gen-btn" id="genBtn" onclick="generatePage()">
+          <svg class="gen-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+          <span class="gen-btn-text">Generate</span>
+        </button>
+      </div>
+      <p class="gen-hint">Paste any public GitHub repo URL. The page will be regenerated with live data from the GitHub API.</p>
+      <div class="gen-status" id="genStatus"></div>
+      <div class="gen-history" id="genHistory"></div>
+    </div>
+  </div>
+
   <!-- Navigation (screen only) -->
   <nav class="nav no-print">
     <div class="nav-inner">
-      <a href="https://github.com/nexu-io/open-design" class="nav-logo" target="_blank" rel="noopener">
+      <a href="https://github.com/nexu-io/open-design" class="nav-logo" id="navLogo" target="_blank" rel="noopener">
         <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <span>Open Design</span>
+        <span id="navLogoText">Open Design</span>
       </a>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#screenshots">Screenshots</a>
-        <a href="#architecture">Architecture</a>
         <a href="#usage">Usage</a>
-        <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="nav-github-btn">
+        <button class="nav-gen-btn" onclick="openGenerator()" title="Generate from GitHub URL">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          New Repo
+        </button>
+        <a href="https://github.com/nexu-io/open-design" id="navGitHubBtn" target="_blank" rel="noopener" class="nav-github-btn">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          Star 7.8k
+          <span id="navStarText">Star 7.8k</span>
         </a>
       </div>
     </div>
@@ -59,19 +86,19 @@
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-content fade-in">
-      <img src="assets/banner.png" alt="Open Design — design with the agent on your laptop" class="hero-banner">
-      <div class="hero-badges">
+      <img src="assets/banner.png" alt="Open Design — design with the agent on your laptop" class="hero-banner" id="heroBanner">
+      <div class="hero-badges" id="heroBadges">
         <span class="badge badge-accent">Local-first</span>
         <span class="badge badge-outline">Open Source</span>
         <span class="badge badge-outline">Apache-2.0</span>
       </div>
-      <h1 class="hero-title">Open Design</h1>
-      <p class="hero-subtitle">Local-first, open-source alternative to Anthropic's Claude Design</p>
-      <p class="hero-description">
+      <h1 class="hero-title" id="heroTitle">Open Design</h1>
+      <p class="hero-subtitle" id="heroSubtitle">Local-first, open-source alternative to Anthropic's Claude Design</p>
+      <p class="hero-description" id="heroDesc">
         31 Skills. 72 brand-grade Design Systems. Sandboxed preview. HTML/PDF/PPTX export.
         Runs on Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Qwen, Copilot, Hermes, Kimi CLI, and any OpenAI-compatible provider.
       </p>
-      <div class="hero-stats">
+      <div class="hero-stats" id="heroStats">
         <div class="stat-item">
           <span class="stat-number" data-count="7800">0</span>
           <span class="stat-label">Stars</span>
@@ -92,8 +119,8 @@
           <span class="stat-label">Commits</span>
         </div>
       </div>
-      <div class="hero-actions">
-        <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="btn btn-primary">
+      <div class="hero-actions" id="heroActions">
+        <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="btn btn-primary" id="heroGhLink">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           View on GitHub
         </a>
@@ -112,10 +139,10 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-tag">About</span>
-        <h2 class="section-title">What is Open Design?</h2>
-        <p class="section-desc">A complete design platform that runs locally alongside your coding agent.</p>
+        <h2 class="section-title" id="aboutTitle">What is Open Design?</h2>
+        <p class="section-desc" id="aboutDesc">A complete design platform that runs locally alongside your coding agent.</p>
       </div>
-      <div class="about-grid fade-in">
+      <div class="about-grid fade-in" id="aboutGrid">
         <div class="about-card">
           <div class="about-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -139,9 +166,9 @@
         </div>
       </div>
 
-      <div class="github-info fade-in">
+      <div class="github-info fade-in" id="githubInfo">
         <h3>Project Details</h3>
-        <div class="info-grid">
+        <div class="info-grid" id="infoGrid">
           <div class="info-item">
             <span class="info-label">Repository</span>
             <a href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener" class="info-value info-link">github.com/nexu-io/open-design</a>
@@ -167,13 +194,13 @@
             <span class="info-value">Active development (daily commits)</span>
           </div>
         </div>
-        <div class="lang-bar">
+        <div class="lang-bar" id="langBar">
           <div class="lang-segment" style="width:67.2%;background:#3178c6" title="TypeScript 67.2%"></div>
           <div class="lang-segment" style="width:23.7%;background:#e34c26" title="HTML 23.7%"></div>
           <div class="lang-segment" style="width:5.6%;background:#563d7c" title="CSS 5.6%"></div>
           <div class="lang-segment" style="width:3.5%;background:#f1e05a" title="JavaScript 3.5%"></div>
         </div>
-        <div class="lang-labels">
+        <div class="lang-labels" id="langLabels">
           <span><span class="lang-dot" style="background:#3178c6"></span>TypeScript 67.2%</span>
           <span><span class="lang-dot" style="background:#e34c26"></span>HTML 23.7%</span>
           <span><span class="lang-dot" style="background:#563d7c"></span>CSS 5.6%</span>
@@ -188,11 +215,11 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-tag">Screenshots</span>
-        <h2 class="section-title">See It in Action</h2>
-        <p class="section-desc">The complete design workflow, from brief to pixel-perfect output.</p>
+        <h2 class="section-title" id="screenshotTitle">See It in Action</h2>
+        <p class="section-desc" id="screenshotDesc">The complete design workflow, from brief to pixel-perfect output.</p>
       </div>
 
-      <div class="screenshot-grid fade-in">
+      <div class="screenshot-grid fade-in" id="screenshotGrid">
         <div class="screenshot-card">
           <div class="screenshot-frame">
             <img src="assets/01-entry-view.png" alt="Entry view" loading="lazy">
@@ -471,15 +498,16 @@ npm install</code></pre>
   <footer class="footer">
     <div class="container">
       <div class="footer-inner">
-        <p class="footer-text">
+        <p class="footer-text" id="footerText">
           <strong>Open Design</strong> by <a href="https://github.com/nexu-io" target="_blank" rel="noopener">nexu-io</a> &mdash;
           inspired by <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>'s design language.
         </p>
-        <p class="footer-copy">&copy; 2026 Open Design. Apache-2.0 License. <span class="print-only"> &mdash; github.com/nexu-io/open-design</span></p>
+        <p class="footer-copy" id="footerCopy">&copy; 2026 Open Design. Apache-2.0 License. <span class="print-only"> &mdash; github.com/nexu-io/open-design</span></p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/generator.js"></script>
 </body>
 </html>
