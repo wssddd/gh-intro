@@ -1,56 +1,141 @@
 # gh-intro
 
-A minimal, Claude.ai-inspired GitHub introduction landing page. Zero dependencies — pure HTML, CSS, and JavaScript.
+> A Claude.ai-inspired GitHub introduction page generator — paste any public repo URL and get a beautiful, print-ready project page instantly.
 
-## Preview
+![gh-intro long screenshot](assets/screenshot.png)
 
-Open `index.html` in your browser or deploy to GitHub Pages.
+---
+
+## What it does
+
+**gh-intro** is a zero-dependency static site that generates a polished introduction page for any GitHub repository. Paste a URL, hit Generate — the page fetches live data from the GitHub API and re-renders every section: hero banner, stats, about cards, language bar, screenshots, architecture, quick start, and footer.
+
+The design is inspired by [Claude.ai](https://claude.ai)'s warm cream + terracotta aesthetic.
+
+---
 
 ## Features
 
-- Warm cream + terracotta color palette inspired by Claude.ai
-- Scroll-triggered fade-in animations
-- Animated stat counters
-- Responsive design (mobile-first)
-- Code block copy buttons
-- Browser-frame screenshot mockup
-- Zero build tools, zero dependencies
+| Feature | Detail |
+|---|---|
+| **GitHub URL Generator** | Paste any `github.com/owner/repo` and regenerate the page with live API data |
+| **Live Stats** | Stars, forks, open issues, contributors — animated counters |
+| **Language Bar** | Proportional breakdown with GitHub's official language colours |
+| **Social Preview** | Hero banner from GitHub's OpenGraph image |
+| **Save Long Screenshot** | One-click full-page PNG export via html2canvas (retina quality) |
+| **Print / US Letter PDF** | Dedicated print stylesheet with cover page and page breaks |
+| **GitHub Token Support** | Optional PAT raises API limit from 60 → 5,000 req/hr |
+| **Recent History** | Last 6 repos stored in localStorage for quick re-access |
+| **Zero dependencies** | Pure HTML + CSS + JS — no build step, no framework |
+| **GitHub Pages ready** | Deploy with one push, live in seconds |
+
+---
+
+## Example
+
+The screenshot above was generated for [`nexu-io/open-design`](https://github.com/nexu-io/open-design) using the built-in generator:
+
+1. Clicked **New Repo** in the nav
+2. Pasted `https://github.com/nexu-io/open-design`
+3. Clicked **Generate** → page rebuilt with live API data
+4. Clicked **Save Long Screenshot** → downloaded as PNG
+
+---
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/gh-intro.git
+git clone https://github.com/wssddd/gh-intro.git
 cd gh-intro
+python3 -m http.server 8000
+# open http://localhost:8000
 ```
 
-Edit `index.html` to customize your name, bio, projects, and links.
+No install. No build. Just open in a browser.
 
-Preview locally:
+---
+
+## Generate a page for any repo
+
+1. Click **New Repo** in the top-right nav
+2. Paste any public GitHub URL:
+   ```
+   https://github.com/owner/repo
+   ```
+3. *(Optional)* Add a [GitHub Personal Access Token](https://github.com/settings/tokens/new?scopes=public_repo&description=gh-intro) to raise the API limit from 60 → 5,000 req/hr
+4. Click **Generate** — the page rebuilds in ~1 second
+
+---
+
+## Save a long screenshot
+
+Click **Save Long Screenshot** (teal button in the hero) to capture the full page as a high-resolution PNG. The file is named after the current project, e.g. `open-design-screenshot.png`.
+
+---
+
+## Print to PDF (US Letter)
+
+Click **Print (US Letter)** or use `Cmd+P` / `Ctrl+P`. The page switches to a print-optimised layout:
+
+- Cover page with project name, description, and stats
+- Automatic page breaks between sections
+- Code blocks rendered in black-on-white
+- All nav/UI chrome hidden
+
+---
+
+## Deploy to GitHub Pages
 
 ```bash
-python3 -m http.server 8000
+git remote add origin https://github.com/wssddd/gh-intro.git
+git push -u origin main
 ```
 
-## Deploy
+Then: **Settings → Pages → Branch: main → / (root)**
 
-Push to GitHub, then go to **Settings > Pages** and select the `main` branch.
+Live at: `https://wssddd.github.io/gh-intro/`
 
-Your site will be live at `https://yourusername.github.io/gh-intro/`.
+---
 
-## Structure
+## Project structure
 
 ```
 gh-intro/
-├── index.html      # Main landing page
+├── index.html           # Main page — all sections with IDs for dynamic update
 ├── css/
-│   └── style.css   # Claude.ai-inspired styles
+│   └── style.css        # Claude.ai-inspired design system + US Letter print styles
 ├── js/
-│   └── main.js     # Animations & interactions
-├── assets/         # Images & screenshots
-└── README.md
+│   ├── main.js          # Scroll animations, counters, copy buttons
+│   ├── generator.js     # GitHub API fetcher + page renderer + token manager
+│   └── screenshot.js    # Full-page PNG capture via html2canvas
+└── assets/
+    ├── screenshot.png        # Long screenshot example (this README)
+    ├── banner.png            # open-design hero banner
+    └── *.png                 # Project screenshots
 ```
+
+---
+
+## GitHub API rate limits
+
+| Mode | Limit |
+|---|---|
+| Unauthenticated | 60 requests / hour |
+| With Personal Access Token | 5,000 requests / hour |
+
+Add your token in the **New Repo** panel → token field → Save. Stored locally in `localStorage`, never sent anywhere except `api.github.com`.
+
+---
+
+## Tech
+
+- **HTML / CSS / JS** — zero build tools, zero npm
+- **[html2canvas 1.4.1](https://html2canvas.hertzen.com/)** — full-page screenshot (CDN)
+- **GitHub REST API v3** — repo metadata, language breakdown
+- **GitHub OpenGraph** — social preview images
+
+---
 
 ## License
 
 MIT
-# gh-intro
