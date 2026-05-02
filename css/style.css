@@ -1121,6 +1121,113 @@ tbody tr:hover { background: var(--bg-surface-hover); }
   to { transform: rotate(360deg); }
 }
 
+/* Token section */
+.gen-token-section {
+  border-top: 1px solid var(--border-light);
+  padding-top: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.gen-token-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.gen-token-header .gen-label { margin-bottom: 0; }
+
+.gen-label-optional {
+  font-weight: 400;
+  color: var(--text-tertiary);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.7rem;
+}
+
+.gen-token-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+}
+
+.gen-token-toggle:hover { color: var(--text-primary); }
+
+.gen-token-input {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.gen-token-save-btn {
+  flex-shrink: 0;
+  padding: 0.6rem 0.9rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.gen-token-save-btn:hover,
+.gen-token-save-btn-active {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: var(--accent-light);
+}
+
+.gen-token-hint {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin-top: 0.4rem;
+}
+
+.gen-token-hint a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.gen-token-hint code {
+  font-size: 0.85em;
+}
+
+/* Rate limit bar */
+.gen-rate-limit {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.gen-rate-bar-wrap {
+  width: 60px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.gen-rate-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
 /* History */
 .gen-history { margin-top: 0.25rem; }
 

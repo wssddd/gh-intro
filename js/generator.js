@@ -29,20 +29,94 @@
     return d.innerHTML;
   }
 
+  // ── Token storage ──────────────────────────────────────────────────
+  var TOKEN_KEY = 'gh-intro-token';
+
+  function loadToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || ''; }
+    catch (e) { return ''; }
+  }
+
+  function persistToken(val) {
+    try {
+      if (val) localStorage.setItem(TOKEN_KEY, val);
+      else localStorage.removeItem(TOKEN_KEY);
+    } catch (e) {}
+  }
+
+  window.saveToken = function () {
+    var inp = document.getElementById('genToken');
+    var btn = document.getElementById('genTokenSaveBtn');
+    // If token already saved, Clear button removes it
+    var existing = loadToken();
+    if (existing && inp.value === existing) {
+      persistToken('');
+      inp.value = '';
+      btn.textContent = 'Cleared ✓';
+    } else {
+      var val = inp.value.trim();
+      persistToken(val);
+      btn.textContent = val ? 'Saved ✓' : 'Cleared ✓';
+    }
+    btn.style.color = '#15803D';
+    setTimeout(function () {
+      updateTokenSaveBtn(loadToken());
+      btn.style.color = '';
+    }, 1500);
+    fetchRateLimit();
+  };
+
+  window.toggleToken = function () {
+    var inp = document.getElementById('genToken');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  };
+
   // ── GitHub API helpers ─────────────────────────────────────────────
   function apiURL(path) {
     return 'https://api.github.com' + path;
   }
 
+  function authHeaders() {
+    var token = loadToken();
+    var h = { Accept: 'application/vnd.github+json' };
+    if (token) h['Authorization'] = 'Bearer ' + token;
+    return h;
+  }
+
   async function apiFetch(path) {
-    var res = await fetch(apiURL(path), {
-      headers: { Accept: 'application/vnd.github+json' }
-    });
+    var res = await fetch(apiURL(path), { headers: authHeaders() });
     if (!res.ok) {
       var err = await res.json().catch(function () { return {}; });
       throw new Error(err.message || ('HTTP ' + res.status));
     }
     return res.json();
+  }
+
+  // ── Rate limit display ─────────────────────────────────────────────
+  async function fetchRateLimit() {
+    var el = document.getElementById('genRateLimit');
+    if (!el) return;
+    try {
+      var res = await fetch(apiURL('/rate_limit'), { headers: authHeaders() });
+      var data = await res.json();
+      var core = data.resources && data.resources.core;
+      if (!core) return;
+      var remaining = core.remaining;
+      var limit = core.limit;
+      var reset = new Date(core.reset * 1000);
+      var resetStr = reset.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      var pct = Math.round((remaining / limit) * 100);
+      var color = remaining > 20 ? '#15803D' : remaining > 5 ? '#B45309' : '#B91C1C';
+      el.innerHTML =
+        '<div class="gen-rate-bar-wrap">' +
+          '<div class="gen-rate-bar" style="width:' + pct + '%;background:' + color + '"></div>' +
+        '</div>' +
+        '<span style="color:' + color + ';font-weight:600">' + remaining + ' / ' + limit + '</span>' +
+        ' requests remaining · resets at ' + resetStr;
+      el.style.display = 'flex';
+    } catch (e) {
+      el.style.display = 'none';
+    }
   }
 
   // ── URL parser ─────────────────────────────────────────────────────
@@ -134,8 +208,21 @@
     document.getElementById('genOverlay').classList.add('open');
     document.getElementById('genInput').focus();
     setStatus('', '');
+    // Restore saved token into field
+    var saved = loadToken();
+    var tokenEl = document.getElementById('genToken');
+    if (tokenEl) tokenEl.value = saved;
+    updateTokenSaveBtn(saved);
     renderHistory();
+    fetchRateLimit();
   };
+
+  function updateTokenSaveBtn(token) {
+    var btn = document.getElementById('genTokenSaveBtn');
+    if (!btn) return;
+    btn.textContent = token ? 'Clear' : 'Save';
+    btn.classList.toggle('gen-token-save-btn-active', !!token);
+  }
 
   window.closeGenerator = function () {
     document.getElementById('genPanel').classList.remove('open');
@@ -196,7 +283,7 @@
       if (msg.includes('Not Found') || msg.includes('404')) {
         setStatus('Repository not found. Check the URL or make sure it is public.', 'error');
       } else if (msg.includes('rate limit') || msg.includes('403')) {
-        setStatus('GitHub API rate limit reached (60 req/hr unauthenticated). Try again in a minute.', 'error');
+        setStatus('GitHub API rate limit reached. Add a token below to raise the limit to 5,000 req/hr.', 'error');
       } else {
         setStatus('Error: ' + msg, 'error');
       }

@@ -54,6 +54,26 @@
       </div>
       <p class="gen-hint">Paste any public GitHub repo URL. The page will be regenerated with live data from the GitHub API.</p>
       <div class="gen-status" id="genStatus"></div>
+
+      <div class="gen-token-section">
+        <div class="gen-token-header">
+          <label class="gen-label" for="genToken">GitHub Token <span class="gen-label-optional">(optional — raises limit to 5,000 req/hr)</span></label>
+          <button class="gen-token-toggle" id="genTokenToggle" onclick="toggleToken()" aria-label="Show/hide token">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="gen-input-row">
+          <input type="password" id="genToken" class="gen-input gen-token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" spellcheck="false" autocomplete="off">
+          <button class="btn gen-token-save-btn" id="genTokenSaveBtn" onclick="saveToken()">Save</button>
+        </div>
+        <p class="gen-token-hint">
+          Token stored locally in your browser only. Generate one at
+          <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=gh-intro" target="_blank" rel="noopener">github.com/settings/tokens</a>
+          with <code>public_repo</code> scope.
+        </p>
+        <div class="gen-rate-limit" id="genRateLimit"></div>
+      </div>
+
       <div class="gen-history" id="genHistory"></div>
     </div>
   </div>
