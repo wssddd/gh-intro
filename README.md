@@ -55,21 +55,11 @@ No install. No build. Just open in a browser.
 
 ---
 
-## Generate a page for any repo
-
-1. Click **New Repo** in the top-right nav
-2. Paste any public GitHub URL:
-   ```
-   https://github.com/owner/repo
-   ```
-3. *(Optional)* Add a [GitHub Personal Access Token](https://github.com/settings/tokens/new?scopes=public_repo&description=gh-intro) to raise the API limit from 60 → 5,000 req/hr
-4. Click **Generate** — the page rebuilds in ~1 second
-
 ---
 
 ## Save a long screenshot
 
-Click **Save Long Screenshot** (teal button in the hero) to capture the full page as a high-resolution PNG. The file is named after the current project, e.g. `open-design-screenshot.png`.
+Click **Save Long Screenshot** (teal button in the hero) to capture the full page as a high-resolution PNG. The file is named after the current project, e.g. `gh-screenshot.png`.
 
 ---
 
@@ -83,17 +73,6 @@ Click **Print (US Letter)** or use `Cmd+P` / `Ctrl+P`. The page switches to a pr
 - All nav/UI chrome hidden
 
 ---
-
-## Deploy to GitHub Pages
-
-```bash
-git remote add origin https://github.com/wssddd/gh-intro.git
-git push -u origin main
-```
-
-Then: **Settings → Pages → Branch: main → / (root)**
-
-Live at: `https://wssddd.github.io/gh-intro/`
 
 ---
 
