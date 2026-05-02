@@ -22,6 +22,13 @@
     return LANG_COLORS[name] || LANG_COLORS.default;
   }
 
+  // ── HTML escape helper — prevents XSS when inserting into innerHTML ─
+  function esc(str) {
+    var d = document.createElement('div');
+    d.textContent = String(str == null ? '' : str);
+    return d.innerHTML;
+  }
+
   // ── GitHub API helpers ─────────────────────────────────────────────
   function apiURL(path) {
     return 'https://api.github.com' + path;
@@ -110,10 +117,15 @@
     if (!list.length) { el.innerHTML = ''; return; }
     el.innerHTML = '<p class="gen-history-label">Recent</p>' +
       list.map(function (s) {
-        return '<button class="gen-history-item" onclick="fillGenerator(\'' + s + '\')">' +
+        return '<button class="gen-history-item" data-slug="' + esc(s) + '">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' +
-          s + '</button>';
+          esc(s) + '</button>';
       }).join('');
+    el.querySelectorAll('.gen-history-item').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.fillGenerator(this.dataset.slug);
+      });
+    });
   }
 
   // ── Open / close generator panel ─────────────────────────────────
@@ -163,7 +175,7 @@
 
     setLoading(true);
     setStatus(
-      '<span class="gen-spinner-inline"></span> Fetching <strong>' + slug + '</strong> from GitHub API…',
+      '<span class="gen-spinner-inline"></span> Fetching <strong>' + esc(slug) + '</strong> from GitHub API…',
       'info'
     );
 
@@ -201,7 +213,7 @@
     var url   = repo.html_url;
     var desc  = repo.description || 'No description provided.';
     var stars = repo.stargazers_count;
-    var forks = repo.watchers_count !== undefined ? repo.forks_count : 0;
+    var forks = repo.forks_count || 0;
     var issues = repo.open_issues_count;
     var license = repo.license ? repo.license.spdx_id : 'No license';
     var mainLang = repo.language || 'Unknown';
@@ -220,14 +232,14 @@
     if (ps) ps.textContent = desc;
     var pm = document.querySelector('.print-cover-meta');
     if (pm) pm.innerHTML =
-      '<span>github.com/' + full + '</span>' +
-      '<span>' + license + '</span>' +
-      '<span>' + fmt(stars) + ' Stars</span>';
+      '<span>github.com/' + esc(full) + '</span>' +
+      '<span>' + esc(license) + '</span>' +
+      '<span>' + esc(fmt(stars)) + ' Stars</span>';
     var pStats = document.querySelector('.print-cover-stats');
     if (pStats) pStats.innerHTML =
-      '<div class="print-stat"><strong>' + fmt(stars) + '</strong><br>Stars</div>' +
-      '<div class="print-stat"><strong>' + fmt(forks) + '</strong><br>Forks</div>' +
-      '<div class="print-stat"><strong>' + mainLang + '</strong><br>Language</div>';
+      '<div class="print-stat"><strong>' + esc(fmt(stars)) + '</strong><br>Stars</div>' +
+      '<div class="print-stat"><strong>' + esc(fmt(forks)) + '</strong><br>Forks</div>' +
+      '<div class="print-stat"><strong>' + esc(mainLang) + '</strong><br>Language</div>';
 
     // ── nav ──
     var navLogo = document.getElementById('navLogo');
@@ -242,8 +254,8 @@
     // ── hero banner → social preview ──
     var banner = document.getElementById('heroBanner');
     if (banner) {
-      banner.src = 'https://opengraph.githubassets.com/1/' + full;
-      banner.alt = name + ' — GitHub social preview';
+      banner.src = 'https://opengraph.githubassets.com/1/' + esc(full);
+      banner.alt = esc(name) + ' — GitHub social preview';
       banner.onerror = function () { this.style.display = 'none'; };
       banner.style.display = '';
     }
@@ -252,18 +264,20 @@
     var badges = document.getElementById('heroBadges');
     if (badges) {
       var badgeHTML = topics.map(function (t, i) {
-        return '<span class="badge ' + (i === 0 ? 'badge-accent' : 'badge-outline') + '">' + t + '</span>';
+        return '<span class="badge ' + (i === 0 ? 'badge-accent' : 'badge-outline') + '">' + esc(t) + '</span>';
       }).join('');
-      if (!badgeHTML) badgeHTML = '<span class="badge badge-outline">' + mainLang + '</span>';
+      if (!badgeHTML) badgeHTML = '<span class="badge badge-outline">' + esc(mainLang) + '</span>';
       badges.innerHTML = badgeHTML;
     }
 
-    // ── hero text ──
-    setText('heroTitle', name);
-    setText('heroSubtitle', desc);
+    // ── hero text — use textContent for plain strings, innerHTML only for safe markup ──
+    var heroTitleEl = document.getElementById('heroTitle');
+    if (heroTitleEl) heroTitleEl.textContent = name;
+    var heroSubtitleEl = document.getElementById('heroSubtitle');
+    if (heroSubtitleEl) heroSubtitleEl.textContent = desc;
     setText('heroDesc',
-      mainLang + ' &middot; ' + license + ' &middot; Last push: ' + pushed +
-      (topics.length ? ' &middot; ' + topics.slice(0, 3).join(', ') : '')
+      esc(mainLang) + ' &middot; ' + esc(license) + ' &middot; Last push: ' + esc(pushed) +
+      (topics.length ? ' &middot; ' + topics.slice(0, 3).map(esc).join(', ') : '')
     );
 
     // ── hero stats ──
@@ -283,30 +297,27 @@
     if (ghLink) ghLink.href = url;
 
     // ── about section ──
-    setText('aboutTitle', 'About ' + name);
-    setText('aboutDesc', desc);
+    var aboutTitleEl = document.getElementById('aboutTitle');
+    if (aboutTitleEl) aboutTitleEl.textContent = 'About ' + name;
+    var aboutDescEl = document.getElementById('aboutDesc');
+    if (aboutDescEl) aboutDescEl.textContent = desc;
     var grid = document.getElementById('aboutGrid');
     if (grid) {
+      var homepageLink = repo.homepage
+        ? ' <a href="' + esc(repo.homepage) + '" target="_blank" rel="noopener">Homepage →</a>'
+        : '';
       grid.innerHTML =
-        makeAboutCard(
-          iconInfo(),
-          'Overview',
-          desc + (repo.homepage ? ' <a href="' + repo.homepage + '" target="_blank" rel="noopener">Homepage →</a>' : '')
+        makeAboutCard(iconInfo(), 'Overview', esc(desc) + homepageLink) +
+        makeAboutCard(iconCode(), 'Tech Stack',
+          'Primary language: <strong>' + esc(mainLang) + '</strong>. ' +
+          (topics.length ? 'Topics: ' + topics.map(esc).join(', ') + '.' : '') +
+          ' License: ' + esc(license) + '.'
         ) +
-        makeAboutCard(
-          iconCode(),
-          'Tech Stack',
-          'Primary language: <strong>' + mainLang + '</strong>. ' +
-          (topics.length ? 'Topics: ' + topics.join(', ') + '.' : '') +
-          ' License: ' + license + '.'
-        ) +
-        makeAboutCard(
-          iconStar(),
-          'Community',
-          fmt(stars) + ' stars, ' + fmt(forks) + ' forks, ' +
-          fmt(issues) + ' open issues. ' +
-          (isOrg ? 'Maintained by the <strong>' + owner + '</strong> organisation.' :
-            'Maintained by <strong>' + owner + '</strong>.')
+        makeAboutCard(iconStar(), 'Community',
+          esc(fmt(stars)) + ' stars, ' + esc(fmt(forks)) + ' forks, ' +
+          esc(fmt(issues)) + ' open issues. ' +
+          (isOrg ? 'Maintained by the <strong>' + esc(owner) + '</strong> organisation.' :
+            'Maintained by <strong>' + esc(owner) + '</strong>.')
         );
     }
 
@@ -314,39 +325,43 @@
     var infoGrid = document.getElementById('infoGrid');
     if (infoGrid) {
       infoGrid.innerHTML =
-        makeInfoItem('Repository', '<a href="' + url + '" target="_blank" rel="noopener" class="info-value info-link">github.com/' + full + '</a>') +
-        makeInfoItem('Owner', owner) +
-        makeInfoItem('License', license) +
-        makeInfoItem('Primary Language', mainLang) +
-        makeInfoItem('Created', created) +
-        makeInfoItem('Last Push', pushed);
+        makeInfoItem('Repository', '<a href="' + esc(url) + '" target="_blank" rel="noopener" class="info-value info-link">github.com/' + esc(full) + '</a>') +
+        makeInfoItem('Owner', esc(owner)) +
+        makeInfoItem('License', esc(license)) +
+        makeInfoItem('Primary Language', esc(mainLang)) +
+        makeInfoItem('Created', esc(created)) +
+        makeInfoItem('Last Push', esc(pushed));
     }
 
     // ── language bar ──
     renderLangBar(langs);
 
     // ── screenshots ──
-    setText('screenshotTitle', name + ' — Screenshots');
-    setText('screenshotDesc', 'Social preview and repository overview from GitHub.');
+    var screenshotTitleEl = document.getElementById('screenshotTitle');
+    if (screenshotTitleEl) screenshotTitleEl.textContent = name + ' — Screenshots';
+    var screenshotDescEl = document.getElementById('screenshotDesc');
+    if (screenshotDescEl) screenshotDescEl.textContent = 'Social preview and repository overview from GitHub.';
+    var avatarSrc = repo.owner.avatar_url +
+      (repo.owner.avatar_url.includes('?') ? '&' : '?') + 's=400';
     var sgrid = document.getElementById('screenshotGrid');
     if (sgrid) {
       sgrid.innerHTML =
         '<div class="screenshot-card" style="grid-column:1/-1">' +
           '<div class="screenshot-frame" style="aspect-ratio:2/1">' +
-            '<img src="https://opengraph.githubassets.com/1/' + full + '" alt="' + name + ' social preview" loading="lazy">' +
+            '<img src="https://opengraph.githubassets.com/1/' + esc(full) + '" alt="' + esc(name) + ' social preview" loading="lazy">' +
           '</div>' +
           '<div class="screenshot-info">' +
-            '<h4>' + name + ' — Social Preview</h4>' +
-            '<p>' + desc + '</p>' +
+            '<h4>' + esc(name) + ' — Social Preview</h4>' +
+            '<p>' + esc(desc) + '</p>' +
           '</div>' +
         '</div>' +
         '<div class="screenshot-card">' +
           '<div class="screenshot-frame owner-frame">' +
-            '<img src="' + repo.owner.avatar_url + '&s=400" alt="' + owner + ' avatar" loading="lazy" style="object-fit:contain;padding:1rem;background:#fff">' +
+            '<img src="' + esc(avatarSrc) + '" alt="' + esc(owner) + ' avatar" loading="lazy" style="object-fit:contain;padding:1rem;background:#fff">' +
           '</div>' +
           '<div class="screenshot-info">' +
-            '<h4>' + (isOrg ? 'Organisation' : 'Owner') + ': ' + owner + '</h4>' +
-            '<p><a href="https://github.com/' + owner + '" target="_blank" rel="noopener">github.com/' + owner + '</a></p>' +
+            '<h4>' + esc(isOrg ? 'Organisation' : 'Owner') + ': ' + esc(owner) + '</h4>' +
+            '<p><a href="https://github.com/' + esc(owner) + '" target="_blank" rel="noopener">github.com/' + esc(owner) + '</a></p>' +
           '</div>' +
         '</div>' +
         '<div class="screenshot-card">' +
@@ -364,15 +379,15 @@
     var footerText = document.getElementById('footerText');
     if (footerText) {
       footerText.innerHTML =
-        '<strong>' + name + '</strong> by ' +
-        '<a href="https://github.com/' + owner + '" target="_blank" rel="noopener">' + owner + '</a>' +
+        '<strong>' + esc(name) + '</strong> by ' +
+        '<a href="https://github.com/' + esc(owner) + '" target="_blank" rel="noopener">' + esc(owner) + '</a>' +
         ' &mdash; introduction page generated by gh-intro.';
     }
     var footerCopy = document.getElementById('footerCopy');
     if (footerCopy) {
       footerCopy.innerHTML =
-        '&copy; ' + new Date().getFullYear() + ' ' + owner + '/' + name + '. ' + license +
-        '. <span class="print-only"> &mdash; github.com/' + full + '</span>';
+        '&copy; ' + new Date().getFullYear() + ' ' + esc(owner) + '/' + esc(name) + '. ' + esc(license) +
+        '. <span class="print-only"> &mdash; github.com/' + esc(full) + '</span>';
     }
 
     // Re-run fade-in observer on new elements
@@ -406,16 +421,16 @@
     var total = Object.values(langs).reduce(function (s, v) { return s + v; }, 0);
     var topLangs = Object.entries(langs).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 3);
     return '<div style="color:#E8E2D9;font-family:monospace;font-size:0.75rem;line-height:1.7;text-align:left;width:100%">' +
-      '<div style="color:#D97757;font-weight:700;margin-bottom:0.5rem">' + repo.full_name + '</div>' +
-      '<div>' + (repo.description || '').slice(0, 80) + '</div>' +
+      '<div style="color:#D97757;font-weight:700;margin-bottom:0.5rem">' + esc(repo.full_name) + '</div>' +
+      '<div>' + esc((repo.description || '').slice(0, 80)) + '</div>' +
       '<div style="margin-top:0.75rem;display:flex;gap:1rem">' +
-        '<span>⭐ ' + fmt(repo.stargazers_count) + '</span>' +
-        '<span>🍴 ' + fmt(repo.forks_count) + '</span>' +
-        '<span>❗ ' + fmt(repo.open_issues_count) + '</span>' +
+        '<span>⭐ ' + esc(fmt(repo.stargazers_count)) + '</span>' +
+        '<span>🍴 ' + esc(fmt(repo.forks_count)) + '</span>' +
+        '<span>❗ ' + esc(fmt(repo.open_issues_count)) + '</span>' +
       '</div>' +
       (total ? '<div style="margin-top:0.5rem">' + topLangs.map(function (e) {
         var pct = ((e[1] / total) * 100).toFixed(0);
-        return '<span style="margin-right:0.75rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + langColor(e[0]) + ';vertical-align:middle;margin-right:3px"></span>' + e[0] + ' ' + pct + '%</span>';
+        return '<span style="margin-right:0.75rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + langColor(e[0]) + ';vertical-align:middle;margin-right:3px"></span>' + esc(e[0]) + ' ' + esc(pct) + '%</span>';
       }).join('') + '</div>' : '') +
       '</div>';
   }

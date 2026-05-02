@@ -116,17 +116,41 @@
 // Copy code button handler (global scope for inline onclick)
 function copyCode(btn) {
   var codeBlock = btn.closest('.code-block');
-  var code = codeBlock.querySelector('code').textContent;
+  if (!codeBlock) return;
+  var codeEl = codeBlock.querySelector('code');
+  if (!codeEl) return;
+  var code = codeEl.textContent;
 
-  navigator.clipboard.writeText(code).then(function () {
+  var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>';
+  var ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+
+  function markCopied() {
     btn.classList.add('copied');
-    btn.innerHTML =
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>';
-
+    btn.innerHTML = ICON_CHECK;
     setTimeout(function () {
       btn.classList.remove('copied');
-      btn.innerHTML =
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      btn.innerHTML = ICON_COPY;
     }, 2000);
-  });
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(code).then(markCopied).catch(function () {
+      fallbackCopy(code, markCopied);
+    });
+  } else {
+    fallbackCopy(code, markCopied);
+  }
+}
+
+function fallbackCopy(text, onSuccess) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    if (document.execCommand('copy')) onSuccess();
+  } catch (e) { /* silent — browser doesn't support copy */ }
+  document.body.removeChild(ta);
 }
