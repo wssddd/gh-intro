@@ -1167,6 +1167,24 @@ tbody tr:hover { background: var(--bg-surface-hover); }
   transform: translateY(-1px);
 }
 
+/* ==================== Screenshot Button ==================== */
+.screenshot-loading {
+  opacity: 0.8;
+  cursor: wait !important;
+  pointer-events: none;
+}
+
+.screenshot-spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(26, 26, 26, 0.25);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
 /* ==================== Animations ==================== */
 .fade-in {
   opacity: 0;
